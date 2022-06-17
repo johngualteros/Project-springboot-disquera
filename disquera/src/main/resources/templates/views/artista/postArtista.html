@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}"  />
+    <title>Agregar Artista</title>
+</head>
+<body>
+    <div class="container-add-form">
+        <div id="formGenero">
+            <section class="close">
+                <img th:src="@{/assets/img/jglogo.jpg}" alt="" class="text-center" width="50">
+                <div th:if="${ac==false}">
+                    <a href="index">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div th:if="${ac==true}">
+                    <a href="../index">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </a>
+                </div>
+            </section>
+            <form method="post" th:action="@{/artista/add}" th:object="${artista}" id="form-edit">
+                <h1 class="title-form" th:text="${accion}">
+                </h1>
+                <div class="mb-3">
+                    <label for="numeroDocumento">Numero Documento</label><br>
+                    <input type="text" name="numeroDocumento" id="numeroDocumento" placeholder="Porfavor digite el numero de documento" class="input" th:field="*{numeroDocumento}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('numeroDocumento')}"
+                    th:errors="*{numeroDocumento}"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="tipoDocumento">Tipo Documento</label><br>
+                    <input type="text" name="tipoDocumento" id="tipoDocumento" placeholder="Porfavor digite el tipo de documento" class="input" th:field="*{tipoDocumento}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('tipoDocumento')}"
+                    th:errors="*{tipoDocumento}"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="nombreArtista">nombre Artista</label><br>
+                    <input type="text" name="nombreArtista" id="nombreArtista" placeholder="Porfavor digite el nombre" class="input" th:field="*{nombreArtista}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('nombreArtista')}"
+                    th:errors="*{nombreArtista}"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="apellidoArtista">apellido Artista</label><br>
+                    <input type="text" name="apellidoArtista" id="apellidoArtista" placeholder="Porfavor digite el apellido" class="input" th:field="*{apellidoArtista}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('apellidoArtista')}"
+                    th:errors="*{apellidoArtista}"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="nombreArtistico">nombre Artistico</label><br>
+                    <input type="text" name="nombreArtistico" id="nombreArtistico" placeholder="Porfavor digite el nombre artistico" class="input" th:field="*{nombreArtistico}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('nombreArtistico')}"
+                    th:errors="*{nombreArtistico}"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="fechaNacimiento">fecha Nacimiento</label><br>
+                    <input type="date" name="fechaNacimiento" id="fechaNacimiento" placeholder="fecha de nacimiento" class="input" th:field="*{fechaNacimiento}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}"
+                    th:errors="*{fechaNacimiento}"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="email">email</label><br>
+                    <input type="email" name="email" id="email" placeholder="Porfavor digite el email" class="input" th:field="*{email}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('email')}"
+                    th:errors="*{email}"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="disquera">id Disquera</label><br>
+                    <input type="text" name="disquera" id="disquera" placeholder="Porfavor digite el id" class="input" th:field="*{disquera}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('disquera')}"
+                    th:errors="*{disquera}"></div>
+                </div>
+                
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input bg-dark" type="checkbox" role="switch" id="estadoArtista" name="estadoArtista" th:field="*{estadoArtista}" checked>
+                    <label class="form-check-label" for="estadoArtista">Estado</label>
+                </div>
+
+                <div th:if="${ac==false}">
+                    <button type="submit" class="button-form mb-3">Registrar</button>
+                </div>
+                <div th:if="${ac==true}">
+                    <button type="button" th:onclick="|editar()|" class="button-form mb-3">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script th:src="@{/assets/js/main.js}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+</body>
+</html>

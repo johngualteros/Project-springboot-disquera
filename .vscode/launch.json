@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DisqueraApplication<disquera>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.disquera.disquera.DisqueraApplication",
+            "projectName": "disquera",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,0 +1,83 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org" lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Consultar</title>
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}"  />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  </head>
+  <body>
+    <div class="container d-flex justify-content-between">
+      <a href="AgregarAlbum"><button class="btn btn-outline-light rounded btn-lg px-5 my-5">+ Agregar</button></a>
+      <img th:src="@{/assets/img/jglogo.jpg}" alt="" class="text-center" width="100">
+
+    </div>
+    <div th:if="${album.size()==0}" class="container alert alert-warning alert-dismissible fade
+      show" role="alert">
+      No hay Generos para mostrar
+
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-
+      label="Close">
+      </button>
+
+    </div>
+    </div> -->
+    <div class="container">
+      <table class="table" id="datat">
+        <thead class="text-light text-center">
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Año Publicación</th>
+            <th scope="col">Nombre Artista</th>
+            <th scope="col">Nombre Genero</th>
+            <th scope="col">Estado</th>
+            <th colspan="2" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="text-light text-center">
+          <tr th:if="${album.size>0}" th:each="al:${album}">
+            <td th:text="${al.idAlbum}"></td>
+            <td th:text="${al.nombreAlbum}"></td>
+            <td th:text="${al.Publicacion}"></td>
+            <td th:text="${al.artista.nombreArtista}"></td>
+            <td th:text="${al.genero.nombreGenero}"></td>
+
+            <td th:if="${al.estadoAlbum == true}">
+              <span class="badge bg-success active">Activo</span>
+            </td>
+
+            <td th:if="${al.estadoAlbum  != true}">
+              <span class="badge bg-danger active">Inactivo</span>
+            </td>
+
+            <td>
+              <a rol="button" th:href="@{/album/edit/}+${al.idAlbum}"class="btn confirm btn-sm"><i class="bi bi-pencil-fill"></i></a> 
+              <a rol="button"  th:onclick="|deleteAlbum('${al.idAlbum}')|" class="btn cancel btn-sm"><i class="bi bi-trash3"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      var datat=document.querySelector("#datat"); 
+      var dataTable=new DataTable("#datat",{ 
+        perPage:20,
+        labels: {
+            placeholder: "Busca por un campo...",
+            perPage: "{select} registros por página",
+            noRows: "No se encontraron registros",
+            info: "Mostrando {start} a {end} de {rows} registros",
+        }
+      } ) ;
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script th:src="@{/assets/js/main.js}"></script>
+  </body>
+</html>

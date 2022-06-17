@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}"  />
+    <title>Agregar Cancion</title>
+</head>
+<body>
+    <div class="container-add-form">
+        <div id="formGenero">
+            <section class="close">
+                <img th:src="@{/assets/img/jglogo.jpg}" alt="" class="text-center" width="50">
+                <div th:if="${ac==false}">
+                    <a href="index">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div th:if="${ac==true}">
+                    <a href="../index">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </a>
+                </div>
+            </section>
+            <form method="post" th:action="@{/disquera/add}" th:object="${disquera}" id="form-edit">
+                <h1 class="title-form" th:text="${accion}">
+                </h1>
+                <div class="mb-3">
+                    <label for="nitDisquera">Nit</label><br>
+                    <input type="text" name="nitDisquera" id="nitDisquera" placeholder="Porfavor digite el nit" class="input" th:field="*{nitDisquera}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('nitDisquera')}"
+                    th:errors="*{nitDisquera}"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="nombreDisquera">Nombre</label><br>
+                    <input type="text" name="nombreDisquera" id="nombreDisquera" placeholder="Porfavor digite el nombre" class="input" th:field="*{nombreDisquera}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('nombreDisquera')}"
+                    th:errors="*{nombreDisquera}"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="telefonoDisquera">Teléfono</label><br>
+                    <input type="text" name="telefonoDisquera" id="telefonoDisquera" placeholder="Porfavor digite el telefono" class="input" th:field="*{telefonoDisquera}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('telefonoDisquera')}"
+                    th:errors="*{telefonoDisquera}"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="direccionDisquera">Direccion</label><br>
+                    <input type="text" name="direccionDisquera" id="direccionDisquera" placeholder="Porfavor digite la Direccion" class="input" th:field="*{direccionDisquera}">
+                    <div class="form-text fw-bold text-danger" th:if="${#fields.hasErrors('direccionDisquera')}"
+                    th:errors="*{direccionDisquera}"></div>
+                </div>
+                
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input bg-dark" type="checkbox" role="switch" id="estadoDisquera" name="estadoDisquera" th:field="*{estadoDisquera}" checked>
+                    <label class="form-check-label" for="estadoDisquera">Estado</label>
+                </div>
+
+                <div th:if="${ac==false}">
+                    <button type="submit" class="button-form mb-3">Registrar</button>
+                </div>
+                <div th:if="${ac==true}">
+                    <button type="button" th:onclick="|editar()|" class="button-form mb-3">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script th:src="@{/assets/js/main.js}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+</body>
+</html>
